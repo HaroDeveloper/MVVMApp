@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FlowrSpot</string>
+    <string name="search_title">Discover flowers\naround you</string>
+    <string name="search_body">Explore between more than 8.427 sightings</string>
+    <string name="search_hint">Looking for something specific?</string>
 </resources>
