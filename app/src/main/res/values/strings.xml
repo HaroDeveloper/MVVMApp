@@ -5,4 +5,8 @@
     <string name="search_hint">Looking for something specific?</string>
     <string name="home_api_generic_error">Error while loading the items</string>
     <string name="home_api_network_error">Network error. Please check your connection</string>
+    <plurals name="sightings_number">
+        <item quantity="one">%d sighting</item>
+        <item quantity="other">%d sightings</item>
+    </plurals>
 </resources>

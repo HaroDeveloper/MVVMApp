@@ -12,15 +12,14 @@ import povio.flowrspot.data.networking.FlowerRepository
 class HomeViewModel(private val flowerRepository: FlowerRepository) : ViewModel() {
 
     private var allFlowers: MutableList<Flower> = mutableListOf()
-    val flowers: MutableStateFlow<List<Flower>> = MutableStateFlow(emptyList())
-    var state = MutableSharedFlow<State>()
+    val flowers: MutableSharedFlow<List<Flower>> = MutableSharedFlow()
+    var state = MutableStateFlow(State.LOADING_INIT)
     private var currentPage: Int = 1
     private var nextPage: Int? = null
 
     init {
         setCollectors()
         viewModelScope.launch {
-            state.emit(State.LOADING_INIT)
             flowerRepository.getFlowers(currentPage)
         }
     }
@@ -40,7 +39,17 @@ class HomeViewModel(private val flowerRepository: FlowerRepository) : ViewModel(
                 allFlowers.addAll(flowerData?.flowers ?: emptyList())
                 flowers.emit(allFlowers)
                 state.emit(State.PAGE_LOADED)
-                if (nextPage == null) state.emit(State.LAST_PAGE_REACHED)
+                if (nextPage == null)
+                    state.emit(State.LAST_PAGE_REACHED)
+            }
+        }
+    }
+
+    fun nextPage() {
+        if (nextPage != null && state.value != State.LOADING_NEXT_PAGE) {
+            viewModelScope.launch {
+                state.emit(State.LOADING_NEXT_PAGE)
+                flowerRepository.getFlowers(currentPage + 1)
             }
         }
     }

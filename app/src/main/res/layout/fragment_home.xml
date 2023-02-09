@@ -20,4 +20,14 @@
         app:layout_constraintRight_toRightOf="@id/bg_image"
         app:layout_constraintTop_toBottomOf="@id/bg_image" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/flowerRecycler"
+        app:layout_constraintLeft_toLeftOf="@id/flowerRecycler"
+        app:layout_constraintRight_toRightOf="@id/flowerRecycler"
+        app:layout_constraintTop_toTopOf="@id/flowerRecycler" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

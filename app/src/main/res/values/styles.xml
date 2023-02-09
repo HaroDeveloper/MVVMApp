@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavigationBar" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">@android:color/white</item>
+        <item name="itemIconTint">@color/bottom_items_color</item>
+        <item name="itemTextColor">@color/bottom_items_color</item>
+        <item name="itemIconSize">30dp</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+    </style>
+</resources>

@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface FlowerApi {
-        @GET("flowers")
-        suspend fun getFlowers(@Query("page") page: Int): FlowerResponse
+    @GET("flowers")
+    suspend fun getFlowers(@Query("page") page: Int): FlowerResponse
 }
