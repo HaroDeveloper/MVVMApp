@@ -3,4 +3,6 @@
     <string name="search_title">Discover flowers\naround you</string>
     <string name="search_body">Explore between more than 8.427 sightings</string>
     <string name="search_hint">Looking for something specific?</string>
+    <string name="home_api_generic_error">Error while loading the items</string>
+    <string name="home_api_network_error">Network error. Please check your connection</string>
 </resources>

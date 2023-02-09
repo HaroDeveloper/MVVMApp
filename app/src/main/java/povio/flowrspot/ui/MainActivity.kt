@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import povio.flowrspot.R
+import povio.flowrspot.databinding.ActivityMainBinding
 import povio.flowrspot.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         addFragmentToContainer(HomeFragment.newInstance())
     }
