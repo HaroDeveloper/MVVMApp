@@ -1,6 +1,9 @@
 package povio.flowrspot.utils
 
 import android.content.res.Resources
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import kotlinx.coroutines.*
 import okhttp3.Dispatcher
 import povio.flowrspot.data.remote.ResultWrapper
@@ -56,4 +59,16 @@ suspend fun <T> ResultWrapper<T>.getResult(
             networkError?.let { it() }
         }
     }
+}
+
+inline fun EditText.onTextChanged(crossinline textChanged: (text: String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {}
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            textChanged(p0.toString())
+        }
+    })
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
@@ -16,7 +17,9 @@ import org.koin.android.ext.android.inject
 import povio.flowrspot.R
 import povio.flowrspot.databinding.FragmentHomeBinding
 import povio.flowrspot.utils.decorators.HomeItemDecorator
+import povio.flowrspot.utils.onTextChanged
 import povio.flowrspot.utils.px
+
 
 class HomeFragment : Fragment() {
 
@@ -38,6 +41,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setAdapter()
         addCollectors()
+        addSearchListener()
     }
 
     private fun setAdapter() {
@@ -135,6 +139,12 @@ class HomeFragment : Fragment() {
 
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.GONE
+    }
+
+    private fun addSearchListener() {
+        binding.searchLayout.search.onTextChanged {
+            viewModel.search(it)
+        }
     }
 
     companion object {

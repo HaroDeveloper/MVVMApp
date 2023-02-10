@@ -8,8 +8,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import povio.flowrspot.data.model.Flower
 import povio.flowrspot.data.networking.FlowerRepository
+import povio.flowrspot.utils.helpers.SearchHelper
 
-class HomeViewModel(private val flowerRepository: FlowerRepository) : ViewModel() {
+class HomeViewModel(
+    private val flowerRepository: FlowerRepository,
+    private val searchHelper: SearchHelper
+) : ViewModel() {
 
     private var allFlowers: MutableList<Flower> = mutableListOf()
     val flowers: MutableSharedFlow<List<Flower>> = MutableSharedFlow()
@@ -51,6 +55,15 @@ class HomeViewModel(private val flowerRepository: FlowerRepository) : ViewModel(
                 state.emit(State.LOADING_NEXT_PAGE)
                 flowerRepository.getFlowers(currentPage + 1)
             }
+        }
+    }
+
+    fun search(word: String) {
+        viewModelScope.launch {
+            if (word.isNotEmpty()) state.emit(State.FILTERING_DONE)
+            else state.emit(State.FILTER_REMOVED)
+
+            flowers.emit(searchHelper.searchFlowers(word, allFlowers))
         }
     }
 }

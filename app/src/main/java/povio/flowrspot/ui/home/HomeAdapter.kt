@@ -1,8 +1,10 @@
 package povio.flowrspot.ui.home
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -14,10 +16,12 @@ import povio.flowrspot.data.model.Flower
 import povio.flowrspot.data.model.HomeItem
 import povio.flowrspot.databinding.HomeItemFlowerBinding
 import povio.flowrspot.databinding.HomeItemLoadingBinding
+import povio.flowrspot.utils.diffutils.FlowerDiffUtil
 import povio.flowrspot.utils.prefixHttp
 import povio.flowrspot.utils.px
 
-class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolderHome>() {
+class HomeAdapter :
+    RecyclerView.Adapter<HomeAdapter.ViewHolderHome>() {
 
     private val homeItems: MutableList<HomeItem> = mutableListOf()
 
@@ -59,7 +63,8 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolderHome>() {
         homeItems.clear()
         homeItems.addAll(flowers.map { HomeItem.FlowerItem(it) })
 
-
+        val diffResult = DiffUtil.calculateDiff(FlowerDiffUtil(oldList, homeItems))
+        diffResult.dispatchUpdatesTo(this)
         notifyDataSetChanged()
     }
 
@@ -77,8 +82,9 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolderHome>() {
     }
 
     private fun removeItemLoading() {
-        if (homeItems.size > 0)
+        if (homeItems.size > 0) {
             homeItems.removeAt(homeItems.size - 1)
+        }
     }
 
     class ViewHolderFlower(private val binding: HomeItemFlowerBinding) :

@@ -4,6 +4,7 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import povio.flowrspot.di.retrofitModule
+import povio.flowrspot.di.searchModule
 import povio.flowrspot.di.viewModelModule
 
 class FlowrSpot : Application() {
@@ -14,7 +15,8 @@ class FlowrSpot : Application() {
             modules(
                 listOf(
                     retrofitModule,
-                    viewModelModule
+                    viewModelModule,
+                    searchModule
                 )
             )
         }

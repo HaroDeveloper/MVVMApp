@@ -10,6 +10,7 @@ import povio.flowrspot.data.networking.FlowerApi
 import povio.flowrspot.data.networking.FlowerRepository
 import povio.flowrspot.ui.home.HomeViewModel
 import povio.flowrspot.utils.Constants
+import povio.flowrspot.utils.helpers.SearchHelper
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -52,5 +53,9 @@ val retrofitModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
+}
+
+val searchModule = module {
+    single { SearchHelper() }
 }
