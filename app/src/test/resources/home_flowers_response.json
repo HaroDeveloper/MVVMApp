@@ -1,0 +1,92 @@
+{
+  "flowers": [
+    {
+      "id": 7,
+      "name": "Alpski volcin",
+      "latin_name": "Daphne alpina",
+      "sightings": 0,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/007/medium/L_00010.jpg?1527514226",
+      "favorite": false
+    },
+    {
+      "id": 38,
+      "name": "Balloon Flower",
+      "latin_name": "Platycodon grandiflorus",
+      "sightings": 11,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/038/medium/pl-image.png?1656446346",
+      "favorite": false
+    },
+    {
+      "id": 8,
+      "name": "Checkered Lily",
+      "latin_name": "Fritillaria meleagris",
+      "sightings": 0,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/008/medium/L_9_0972.JPG?1527514310",
+      "favorite": false
+    },
+    {
+      "id": 5,
+      "name": "Daisy",
+      "latin_name": "Bellis perennis",
+      "sightings": 0,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/005/medium/L_3-0365_IMG.JPG?1527514193",
+      "favorite": false
+    },
+    {
+      "id": 12,
+      "name": "Drobnolistni lan",
+      "latin_name": "Linum tenuifolium",
+      "sightings": 0,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/012/medium/L_2-6230_IMG.JPG?1527514470",
+      "favorite": false
+    },
+    {
+      "id": 1,
+      "name": "Goosefoot Violet",
+      "latin_name": "Viola purpurea",
+      "sightings": 2,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/001/medium/viola.jpg?1505132614",
+      "favorite": false
+    },
+    {
+      "id": 25,
+      "name": "Cherry Blossom",
+      "latin_name": "Cherry Spinosa",
+      "sightings": 3,
+      "profile_picture": "https://flowrspot-api.herokuapp.com/images/medium/missing.jpg",
+      "favorite": false
+    },
+    {
+      "id": 2,
+      "name": "Lily",
+      "latin_name": "Liliy in latin",
+      "sightings": 11,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/002/medium/dahlia-1627138_960_720.jpg?1519073382",
+      "favorite": false
+    },
+    {
+      "id": 21,
+      "name": "Ljubicica",
+      "latin_name": "Ljbicica latinski",
+      "sightings": 0,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/021/medium/images.jpg?1528071541",
+      "favorite": false
+    },
+    {
+      "id": 6,
+      "name": "Marsh-marigold",
+      "latin_name": "Caltha palustris",
+      "sightings": 0,
+      "profile_picture": "//flowrspot.s3.amazonaws.com/flowers/profile_pictures/000/000/006/medium/L_3-0353_IMG.JPG?1527514211",
+      "favorite": false
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "current_page": 1,
+      "prev_page": null,
+      "next_page": 2,
+      "total_pages": 3
+    }
+  }
+}
