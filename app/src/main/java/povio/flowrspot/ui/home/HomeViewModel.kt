@@ -1,6 +1,5 @@
 package povio.flowrspot.ui.home
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,6 +17,7 @@ class HomeViewModel(
     private var allFlowers: MutableList<Flower> = mutableListOf()
     val flowers: MutableSharedFlow<List<Flower>> = MutableSharedFlow()
     var state = MutableStateFlow(State.LOADING_INIT)
+    var currentDy = 0
     private var currentPage: Int = 1
     private var nextPage: Int? = null
 

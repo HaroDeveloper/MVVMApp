@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
@@ -45,7 +44,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        adapter = HomeAdapter()
+        adapter = HomeAdapter(binding.flowerRecycler)
         binding.flowerRecycler.adapter = adapter
 
         val gridLayoutManager =
@@ -87,17 +86,21 @@ class HomeFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.flowers.collect {
                     adapter.addFlowers(it)
+                    adapter.updateRecyclerDeltaY(viewModel.currentDy)
                 }
             }
         }
-
     }
 
     private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            if (isLastItemVisible(recyclerView))
+            viewModel.currentDy +=  dy
+            if (isLastItemVisible(recyclerView)) {
                 viewModel.nextPage()
+                adapter.updateRecyclerDeltaY(viewModel.currentDy)
+            }
+
         }
     }
 

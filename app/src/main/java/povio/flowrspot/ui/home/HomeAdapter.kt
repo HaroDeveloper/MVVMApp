@@ -20,10 +20,12 @@ import povio.flowrspot.utils.diffutils.FlowerDiffUtil
 import povio.flowrspot.utils.prefixHttp
 import povio.flowrspot.utils.px
 
-class HomeAdapter :
+class HomeAdapter(var recyclerView: RecyclerView?) :
     RecyclerView.Adapter<HomeAdapter.ViewHolderHome>() {
 
     private val homeItems: MutableList<HomeItem> = mutableListOf()
+    var currentDeltay = 0
+    private var previousDeltaY = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHome {
         lateinit var viewHolder: ViewHolderHome
@@ -65,7 +67,8 @@ class HomeAdapter :
 
         val diffResult = DiffUtil.calculateDiff(FlowerDiffUtil(oldList, homeItems))
         diffResult.dispatchUpdatesTo(this)
-        notifyDataSetChanged()
+
+        keepRecyclerYPosition()
     }
 
     fun addLoadingItem() {
@@ -73,6 +76,15 @@ class HomeAdapter :
             homeItems.add(HomeItem.LoadingItem)
             notifyItemInserted(homeItems.size - 1)
         }
+    }
+
+    fun keepRecyclerYPosition() {
+        recyclerView?.scrollBy(0, currentDeltay - previousDeltaY)
+        previousDeltaY = currentDeltay
+    }
+
+    fun updateRecyclerDeltaY(deltaY: Int) {
+        currentDeltay = deltaY
     }
 
     private fun isLastItemLoading(): Boolean {
@@ -83,7 +95,28 @@ class HomeAdapter :
 
     private fun removeItemLoading() {
         if (homeItems.size > 0) {
-            homeItems.removeAt(homeItems.size - 1)
+            val oldList: MutableList<HomeItem> = mutableListOf()
+            oldList.addAll(homeItems)
+            homeItems.clear()
+            homeItems.addAll(oldList)
+            removeLoadingItemsFromList()
+
+            val diffResult = DiffUtil.calculateDiff(FlowerDiffUtil(oldList, homeItems))
+            diffResult.dispatchUpdatesTo(this)
+        }
+    }
+
+    private fun removeLoadingItemsFromList() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            homeItems.removeIf { homeItem -> homeItem is HomeItem.LoadingItem }
+        } else {
+            val iterator = homeItems.iterator()
+            while (iterator.hasNext()) {
+                val homeItem = iterator.next()
+                if (homeItem is HomeItem.LoadingItem) {
+                    iterator.remove()
+                }
+            }
         }
     }
 
